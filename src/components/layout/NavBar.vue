@@ -5,7 +5,7 @@ import { ref } from "vue";
 import { useRoute} from 'vue-router'
 import { useUser } from '@/composables/useUser'
 import Sidebar from 'primevue/sidebar';
-import PanelMenu from 'primevue/panelmenu';
+import ProgressBar from 'primevue/progressbar';
 
 const route = useRoute()
 
@@ -15,7 +15,7 @@ const visible = ref(false)
 const items = ref([
     {
         label: 'Main',
-        route: '/main'
+        route: '/'
     },
     {
         label: 'Shop',
@@ -121,8 +121,6 @@ const routes = ref([
 
                         </Button>
                     </div>
-
-
                 </Sidebar>
                 <ThemeSwitcher />
             </div>
@@ -133,11 +131,42 @@ const routes = ref([
             <span style="font-size: 20pt;">Lorem, ipsum dolor.</span>
             <span style="font-size: 30pt;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nulla!</span><br>
             <span style="font-size: 20pt;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+            <div class="temporary">
+                <h2>Бесплатно до конца года</h2>
+                <br>
+                <ProgressBar :value="70">9 months</ProgressBar>
+                <br>
+                <span class="opacity-text">Will email you until 3 days off</span>
+            </div>
+            <br>
+            <div class="trial">
+                <Button label="Trial free until the end of year"/>
+                <span class="opacity-text">After that 1499 ₸</span>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
+.temporary {
+    margin-top: 80px;
+    text-align: start;
+}
+
+.opacity-text {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.trial {
+    margin: auto !important;
+}
+.trial Button {
+    width: 280px;
+    height: 60px;
+    background: linear-gradient(90deg, rgba(0,81,121,1) 24%, rgba(9,84,121,1) 47%, rgba(86,95,198,1) 65%);
+    color: aliceblue;
+}
 
 .background {
     position: absolute;
@@ -164,6 +193,7 @@ const routes = ref([
     position: absolute;
     right: 20px;
     top: 10px;
+    scale: 1.3;
 }
 
 .navBar {
@@ -202,7 +232,7 @@ const routes = ref([
 
 :deep(.p-menubar-root-list) {
     margin-left: 30%;
-    scale: 1.3;
+    scale: 1.7;
     position: relative;
     bottom: 100px;
 }
@@ -236,6 +266,7 @@ const routes = ref([
     top: -100px;
     width: 900px;
     text-align: center;
+    scale: 1.2;
 }
 
 .content-in-nav div {

@@ -17,10 +17,10 @@ export const useContent = () => {
     newContent: false
   })
 
-  async function getAllContent() {
+  async function getAllMovies() {
     loading.value.contentList = true
     try {
-      const querySnapshot = await getDocs(collection(db, 'contents'))
+      const querySnapshot = await getDocs(collection(db, 'movies'))
       contentList.value = querySnapshot.docs.map((doc) => doc.data())
       loading.value.contentList = false
     } catch (error) {
@@ -68,7 +68,7 @@ export const useContent = () => {
     content,
     contentList,
     loading,
-    getAllContent,
+    getAllMovies,
     getContentById,
     addContent,
     deleteContent
