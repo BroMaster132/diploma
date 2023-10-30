@@ -28,7 +28,8 @@ const userToObject = computed(() => {
       photoURL: user.value.photoURL,
       favourites: user.value.favourites ?? [],
       status: user.value.status ?? 'user',
-      reviews: user.value.reviews ?? []
+      reviews: user.value.reviews ?? [],
+
     }
   }
   return null

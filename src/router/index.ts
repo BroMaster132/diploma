@@ -26,6 +26,16 @@ const router = createRouter({
       name: 'channels',
       component: ChannelsView
     },
+    {
+      path: '/movie/:id',
+      name: 'movie',
+      component: () => import('@/views/MovieIdPage.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('@/views/NotFoundPage.vue'),
+    },
   ]
 })
 

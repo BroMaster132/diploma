@@ -13,11 +13,12 @@
 import { onMounted } from 'vue';
 import Card from 'primevue/card';
 import { useContent } from '@/composables/useContent';
-const {getAllMovies} = useContent()
+const {getAllMovies,} = useContent()
 
 onMounted(async () =>{
   await getAllMovies()
 })
+
 
 
 import {  defineProps } from 'vue';

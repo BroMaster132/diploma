@@ -1,3 +1,81 @@
+<template>
+    <img src="../layout/enot.jpeg" class="background">
+
+    <Menubar class="navBar"  :model="items">
+        
+        <template #start>
+
+            <div class="menu">
+                <div class="hidden-top">
+                    <h1><i class="pi pi-align-justify" /> FreeSearch</h1>
+                </div>
+                <div class="hidden">
+                    <span>Main</span>
+                    <span>Online-cinema</span>
+                    <span>Movies</span>
+                    <span>Serials</span>
+                    <span>Tickets to the movie</span>
+                    <span>Media</span>
+                </div>
+            </div>
+        </template>
+        
+        <template #item="{ label, item, props, root, hasSubmenu }">
+                <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom class="orange">
+                    <a :href="routerProps.href" v-bind="props.action">
+                        <span v-bind="props.icon" />
+                        <span v-bind="props.label">{{ label }}</span>
+                    </a>
+                </router-link>
+                <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                    <span v-bind="props.icon" />
+                    <span v-bind="props.label">{{ label }}</span>
+                    <span :class="[hasSubmenu && (root ? 'pi pi-fw pi-angle-down' : 'pi pi-fw pi-angle-right')]" v-bind="props.submenuicon" />
+                </a>
+        </template>
+        <template #end>
+            <Button v-if="!user" class='sign_in'  label='Sign in' @click="googleRegister()"/>
+            <div class="userCard" visible=visible  v-else>
+                <Button icon="pi pi-fw pi-user" class="p-button-rounded p-button-outlined" @click="visible =!visible">
+                    <template #icon>
+                        <i class="pi pi-fw pi-user"></i>
+                    </template>
+                </Button>
+                <Sidebar v-model:visible="visible" position="right">
+                    <div class="account">
+                        <img :src="user.photoURL" alt="User" class="p-d-inline-block" style="width: 40px; height: 40px; border-radius: 50%;"/>
+                        <br>
+                        <span class="p-d-inline-block">{{ user.displayName }}</span>
+                    </div>
+                    <div class="account-content">
+                        <MovieAdd v-if="user.status == 'admin'" />
+                        <br>
+                        <Button label="Sign Out" class="sign_out"  @click="googleLogout" />
+                    </div>
+                </Sidebar>
+            </div>
+        </template>
+    </Menubar>
+    <div class="content-in-nav ">
+        <div>
+            <span style="font-size: 20pt;">Lorem, ipsum dolor.</span>
+            <span style="font-size: 30pt;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nulla!</span><br>
+            <span style="font-size: 20pt;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+            <div class="temporary">
+                <h2>Бесплатно до конца года</h2>
+                <br>
+                <ProgressBar :value="70">9 months</ProgressBar>
+                <br>
+                <span class="opacity-text">Will email you until 3 days off</span>
+            </div>
+            <br>
+            <div class="trial">
+                <Button label="Trial free until the end of year"/>
+                <span class="opacity-text">After that 1499 ₸</span>
+            </div>
+        </div>
+    </div>
+</template>
 <script setup lang="ts">
 import Button from 'primevue/button'
 import Menubar from 'primevue/menubar';
@@ -6,10 +84,10 @@ import { useRoute} from 'vue-router'
 import { useUser } from '@/composables/useUser'
 import Sidebar from 'primevue/sidebar';
 import ProgressBar from 'primevue/progressbar';
-
-const route = useRoute()
-
+import MovieAdd from '../MovieAdd.vue';
 const { user, googleRegister, googleLogout } = useUser()
+console.log();
+
 const visible = ref(false)
 
 const items = ref([
@@ -67,87 +145,15 @@ const routes = ref([
 
 </script>
 
-<template>
-    <img src="../layout/enot.jpeg" class="background">
-
-    <Menubar class="navBar"  :model="items">
-        
-        <template #start>
-
-            <div class="menu">
-                <div class="hidden-top">
-                    <h1><i class="pi pi-align-justify" /> FreeSearch</h1>
-                </div>
-                <div class="hidden">
-                    <span>Main</span>
-                    <span>Online-cinema</span>
-                    <span>Movies</span>
-                    <span>Serials</span>
-                    <span>Tickets to the movie</span>
-                    <span>Media</span>
-                </div>
-            </div>
-        </template>
-        
-        <template #item="{ label, item, props, root, hasSubmenu }">
-                <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom class="orange">
-                    <a :href="routerProps.href" v-bind="props.action">
-                        <span v-bind="props.icon" />
-                        <span v-bind="props.label">{{ label }}</span>
-                    </a>
-                </router-link>
-                <a v-else :href="item.url" :target="item.target" v-bind="props.action">
-                    <span v-bind="props.icon" />
-                    <span v-bind="props.label">{{ label }}</span>
-                    <span :class="[hasSubmenu && (root ? 'pi pi-fw pi-angle-down' : 'pi pi-fw pi-angle-right')]" v-bind="props.submenuicon" />
-                </a>
-        </template>
-        <template #end>
-            <Button v-if="!user" class='sign_in'  label='Sign in' @click="googleRegister()"/>
-            <div class="userCard" visible=visible  v-else>
-                <Button icon="pi pi-fw pi-user" class="p-button-rounded p-button-outlined" @click="visible =!visible">
-                    <template #icon>
-                        <i class="pi pi-fw pi-user"></i>
-                    </template>
-                </Button>
-                <Sidebar v-model:visible="visible" position="right">
-                    <div class="account">
-                        <img :src="user.photoURL" alt="User" class="p-d-inline-block" style="width: 40px; height: 40px; border-radius: 50%;"/>
-                        <br>
-                        <span class="p-d-inline-block">{{ user.displayName }}</span>
-                    </div>
-                    <div>
-                        <Button label="Sign Out" class="sign_out"  @click="googleLogout">
-
-                        </Button>
-                    </div>
-                </Sidebar>
-                <ThemeSwitcher />
-            </div>
-        </template>
-    </Menubar>
-    <div class="content-in-nav ">
-        <div>
-            <span style="font-size: 20pt;">Lorem, ipsum dolor.</span>
-            <span style="font-size: 30pt;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nulla!</span><br>
-            <span style="font-size: 20pt;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-            <div class="temporary">
-                <h2>Бесплатно до конца года</h2>
-                <br>
-                <ProgressBar :value="70">9 months</ProgressBar>
-                <br>
-                <span class="opacity-text">Will email you until 3 days off</span>
-            </div>
-            <br>
-            <div class="trial">
-                <Button label="Trial free until the end of year"/>
-                <span class="opacity-text">After that 1499 ₸</span>
-            </div>
-        </div>
-    </div>
-</template>
 
 <style scoped>
+.account-content {
+    position: relative;
+    top: 40px;
+    padding: 20px;
+    text-align: center;
+    border: saddlebrown solid;
+}
 .temporary {
     margin-top: 80px;
     text-align: start;
