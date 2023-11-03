@@ -34,61 +34,38 @@
                 </a>
         </template>
         <template #end>
-            <Button v-if="!user" class='sign_in'  label='Sign in' @click="googleRegister()"/>
-            <div class="userCard" visible=visible  v-else>
-                <Button icon="pi pi-fw pi-user" class="p-button-rounded p-button-outlined" @click="visible =!visible">
-                    <template #icon>
-                        <i class="pi pi-fw pi-user"></i>
-                    </template>
-                </Button>
-                <Sidebar v-model:visible="visible" position="right">
-                    <div class="account">
-                        <img :src="user.photoURL" alt="User" class="p-d-inline-block" style="width: 40px; height: 40px; border-radius: 50%;"/>
-                        <br>
-                        <span class="p-d-inline-block">{{ user.displayName }}</span>
-                    </div>
-                    <div class="account-content">
-                        <MovieAdd v-if="user.status == 'admin'" />
-                        <br>
-                        <Button label="Sign Out" class="sign_out"  @click="googleLogout" />
-                    </div>
-                </Sidebar>
-            </div>
+            <SideBar />
         </template>
     </Menubar>
     <div class="content-in-nav ">
         <div>
             <span style="font-size: 20pt;">Lorem, ipsum dolor.</span>
-            <span style="font-size: 30pt;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nulla!</span><br>
-            <span style="font-size: 20pt;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+            <span style="font-size: 30pt;">Movies and serials will be always free for a watch</span><br>
             <div class="temporary">
-                <h2>Бесплатно до конца года</h2>
+                <h2>Free all time</h2>
                 <br>
-                <ProgressBar :value="70">9 months</ProgressBar>
+                <ProgressBar :value="100">Always Free</ProgressBar>
                 <br>
-                <span class="opacity-text">Will email you until 3 days off</span>
-            </div>
-            <br>
-            <div class="trial">
-                <Button label="Trial free until the end of year"/>
-                <span class="opacity-text">After that 1499 ₸</span>
+                <span class="opacity-text">Will never be payment</span>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import Button from 'primevue/button'
+
 import Menubar from 'primevue/menubar';
 import { ref } from "vue";
 import { useRoute} from 'vue-router'
 import { useUser } from '@/composables/useUser'
-import Sidebar from 'primevue/sidebar';
+import SideBar from '../SideBar.vue';
 import ProgressBar from 'primevue/progressbar';
-import MovieAdd from '../MovieAdd.vue';
-const { user, googleRegister, googleLogout } = useUser()
-console.log();
 
-const visible = ref(false)
+const { user, googleRegister, googleLogout } = useUser()
+
+const route = useRoute()
+
+
+
 
 const items = ref([
     {
@@ -147,13 +124,7 @@ const routes = ref([
 
 
 <style scoped>
-.account-content {
-    position: relative;
-    top: 40px;
-    padding: 20px;
-    text-align: center;
-    border: saddlebrown solid;
-}
+
 .temporary {
     margin-top: 80px;
     text-align: start;
@@ -189,11 +160,7 @@ const routes = ref([
 :deep(.pi-align-justify){
     font-size: 20pt;
 }
-.sign_in{
-    position: relative;
-    right: 20px;
-    bottom: 100px;
-}
+
 
 .userCard {
     position: absolute;
@@ -252,18 +219,7 @@ const routes = ref([
 
 
 
-.account {
-    text-align: center;
-    scale: 1.5;
 
-}
-
-.account img {
-    margin-top: 30px;
-    scale: 1.2;
-
-
-}
 
 .content-in-nav {
     left: 30%;

@@ -1,7 +1,9 @@
 <template>
-    <div class="row-movies">
+    <h2>All movies we have yet</h2>
+    <div class="flex">
         <section  v-for="movie in movieList" :key="movie">
-            <MovieCard @click="watchMovie(movie.id)" :movie="movie" />  
+            <MovieCard class="card-style" @click="watchMovie(movie.id)"  :movie="movie" />  
+
         </section>
     </div>
 </template>
@@ -14,6 +16,8 @@ import MovieCard from './MovieCard.vue';
 import { onMounted } from 'vue';
 import { useContent } from '@/composables/useContent';
 import { useRouter } from 'vue-router';
+
+
 const {getAllMovies , movieList, movie} = useContent()
 
 const router = useRouter()
@@ -26,10 +30,7 @@ function watchMovie(id : any) {
     router.push({name: 'movie', params: {id}})
 }
 
-console.log(movie);
 
-
-console.log(movieList);
 
 
 
@@ -37,9 +38,29 @@ console.log(movieList);
 
 
 <style scoped>
-.row-movies {
+.flex {
     display: flex;
-    flex-direction: row;
-    
+    flex-flow: row wrap;
+    justify-content: start;
+    border: saddlebrown solid;
+    height: 1000px;
 }
+
+.card-style {
+    margin-left: 40px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.card-style:hover {
+    box-shadow: 0px 0px 10px 10px black;
+    scale: 1.1;
+}
+
+.card-style:focus {
+    scale: 1.1;
+    display: none;
+}
+
+
 </style>s

@@ -1,27 +1,33 @@
 <template>
-    <Card>
-        <template #content>
-            <img :src=props.movie.image>
-            <div style="padding-left: 30px;">
-                
-            </div>
-        </template>
-    </Card>
+    <div  v-if="skeleton">
+        <Skeleton />
+    </div>
+    <div v-else>
+        <Card unstyled class="card" >
+            <template #content>
+                <img :src=props.movie.image>
+            </template>
+        </Card>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted , ref} from 'vue';
+import Skeleton from 'primevue/skeleton';
 import Card from 'primevue/card';
 import { useContent } from '@/composables/useContent';
+
 const {getAllMovies,} = useContent()
 
 onMounted(async () =>{
   await getAllMovies()
 })
+let skeleton = ref(true)
+setTimeout(() => {
+    skeleton.value = false
+}, 1000);
 
 
-
-import {  defineProps } from 'vue';
 
 const props = defineProps ({
     movie: {
@@ -38,20 +44,22 @@ console.log(props);
 </script>
 
 <style scoped>
-.p-card {
+.card {
     width: 500px;
     height: 300px;
     background: none ;
 }
-.p-card img {
+.card img {
     position: absolute;
     width: 500px;
     height: 300px;
     
     z-index: 0;
 }
-.p-card p {
+.card p {
     position: relative;
     z-index: 1;
 }
+
+
 </style>
