@@ -73,52 +73,12 @@ const items = ref([
         route: '/'
     },
     {
-        label: 'Shop',
-        route: '/shop'
-    },
-    {
         label: 'Mine',
         route: '/mine'
     },
-    {
-        label: 'Channels',
-        route: '/channels'
-    },
 
 ]);
-const routes = ref([
-    {
-        label: 'FreeSearch',
-        icon: 'pi pi-search',
-        items: [
-            {
-                label: 'Main',
-                route: '/',
-            },
-            {
-                label: 'Online-cinema',
-                route: '/online-cinema'
-            },
-            {
-                label: 'Movies',
-                route: '/movies'
-            },
-            {
-                label: 'Serials',
-                route: '/serials'
-            },
-            {
-                label: 'Tickets to the movie',
-                route: '/tickets-to-the-movie'
-            },
-            {
-                label: 'Media',
-                route: '/media'
-            },
-        ]
-    }
 
-]);
 
 </script>
 

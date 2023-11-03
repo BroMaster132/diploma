@@ -3,7 +3,7 @@
     <br><br>
     <div class="flex">
         <section  v-for="movie in movieList" :key="movie">
-            <MovieCard class="card-style" :movie="movie" />  
+            <MovieCard class="card-style" :movie="movie"  />  
 
         </section>
     </div>
@@ -17,14 +17,16 @@ import MovieCard from './MovieCard.vue';
 import { onMounted } from 'vue';
 import { useContent } from '@/composables/useContent';
 import { useRouter } from 'vue-router';
-
+import { useUser } from '@/composables/useUser';
 
 const {getAllMovies , movieList, movie} = useContent()
-
+const { userToObject, addFavourite } = useUser()
 const router = useRouter()
 onMounted(async () =>{
     await getAllMovies()
 })
+
+console.log(userToObject);
 
 
 
@@ -42,7 +44,6 @@ h1 {
     display: flex;
     flex-flow: row wrap;
     justify-content: start;
-
     height: 1000px;
 }
 

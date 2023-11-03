@@ -48,7 +48,6 @@ const visible = ref(false)
     top: 40px;
     padding: 20px;
     text-align: center;
-    border: saddlebrown solid;
 }
 
 .sign_in{
