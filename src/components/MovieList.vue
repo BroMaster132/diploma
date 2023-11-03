@@ -55,12 +55,10 @@ function watchMovie(id : any) {
 .card-style:hover {
     box-shadow: 0px 0px 10px 10px black;
     scale: 1.1;
+
 }
 
-.card-style:focus {
-    scale: 1.1;
-    display: none;
-}
+
 
 
 </style>s
