@@ -147,14 +147,8 @@ export const useUser = () => {
     // удаляем из локал сторадж
     removeFromLocalStorage()
   }
+  
 
-  // это надо не всем
-  // для постоянной связи сервиса с базой данных
-  watch(user.value, async (newValue) => {
-    if (newValue) {
-      await updateUserInDatabase()
-    }
-  })
 
   return {
     user,
