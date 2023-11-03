@@ -1,6 +1,8 @@
 <template>
     <footer>
         <span>© 2023-forever Freepoisk</span>
+        <br>
+        <a href="https://github.com/BroMaster132/diploma"><i class="pi pi-github" /></a>
     </footer>
 </template>
 
@@ -21,5 +23,9 @@ footer {
 
 span {
     font-size: 25pt;
+}
+
+.pi {
+    scale: 1.5;
 }
 </style>
