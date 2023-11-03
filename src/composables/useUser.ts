@@ -150,18 +150,11 @@ export const useUser = () => {
 
   function addFavourite(id: number){
     try {
-      console.log(1);
-      
- 
-      console.log(isIdInArray);
-      
-      if(isIdInArray) {
-        console.log(2);
         
         userToObject.value?.favourites.push({
           id: id,
         }); 
-      }
+      
     } catch (error) {
       console.error(error);
     }
