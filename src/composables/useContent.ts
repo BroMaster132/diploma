@@ -14,6 +14,8 @@ export const useContent = () => {
     url: '',
     image: '',
     rates: '',
+    description: '',
+    trailer: '',
     id: createId(),
   })
 

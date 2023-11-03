@@ -9,16 +9,21 @@
                     <img :src=props.movie.image>
                 </template>
             </Card>
-            <Dialog v-model:visible="visible" :draggable="false" modal :header=movie.name :style="{ width: '140rem' , height: '100rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+            <Dialog v-model:visible="visible" :draggable="false" modal :header=movie.name :style="{ width: '140rem' , height: '60rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
                 <div class="modal-content">
                     <div class="left-side">
                         <img :src=movie.image :width=400>
                         <br>
-                        <span>{{movie.description}}</span>
+                        <span style="font-size: 35pt;">{{movie.description}}</span>
+                        <br>
+                        <br>
+                        <br>
                         <Button label="Watch movie" />
+                        <Button icon="" />
                     </div>
+
                     <div class="right-side">
-                        <iframe width="1280" height="720" :src="movie.url" title="movie.name" frameborder="0" allowfullscreen />
+                        <iframe width="1280" height="720" :src="movie.trailer" title="movie.name" frameborder="0" fullscreen allowfullscreen />
                     </div>
                 </div>
             </Dialog>
@@ -80,13 +85,27 @@ console.log(props);
 }
 
 .modal-content {
-    height: 1052px;
-    border: saddlebrown solid;
+    height: 844px;
+
 
 }
 
-.modal-content iframe {
 
+.left-side {
+
+    width: 40%;
+}
+.right-side {
+    position: absolute;
+    right: 25px;
+    top: 100px;
 }
 
+.left-side img {
+    border-radius: 20px;
+}
+
+:deep(.p-dialog) {
+    background-color: black;
+}
 </style>
