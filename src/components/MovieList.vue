@@ -2,7 +2,7 @@
     <h2>All movies we have yet</h2>
     <div class="flex">
         <section  v-for="movie in movieList" :key="movie">
-            <MovieCard class="card-style" @click="watchMovie(movie.id)"  :movie="movie" />  
+            <MovieCard class="card-style" :movie="movie" />  
 
         </section>
     </div>
