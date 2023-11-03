@@ -1,6 +1,8 @@
 <template>
     <div class="not_found">
-        The page haven't been found
+        <h1>
+            The page haven't been found
+        </h1>
     </div>
 </template>
 
@@ -10,6 +12,7 @@
 
 <style scoped>
 .not_found {
+    text-align: center;
     position: relative;
     z-index: 1;
 }

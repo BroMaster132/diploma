@@ -23,9 +23,9 @@
                             <iframe  class="fullscreen" :src=movie.url width="1280" height="720"  frameborder="0" fullscreen allowfullscreen />
                             <Button class="unstyled-button" icon="pi pi-times" @click="movieVisibility=!movieVisibility" />
                         </Dialog>
-                        <!-- <Button  icon="pi pi-bookmark" />
-                        <Button icon="pi pi-bookmark-fill" />
-                        <Button label="Delete movie" @click="deleteMovie(movie.id)"/> -->
+                        <!-- <Button  icon="pi pi-bookmark" @click="addFavourite(movie.id)"/> -->
+
+
                     </div>
                     <div class="right-side">
                         <iframe width="1280" height="720" :src="movie.trailer"  frameborder="0" fullscreen allowfullscreen />
@@ -46,7 +46,7 @@ import Button from 'primevue/button';
 import { useUser } from '@/composables/useUser';
 
 
-const {getAllMovies, deleteMovie} = useContent()
+const {getAllMovies, getMovieById} = useContent()
 
 const {user, getAllUsers} = useUser()
 
@@ -54,6 +54,12 @@ onMounted(async () => {
     await getAllMovies()
     await getAllUsers()
 })
+
+// function addFavourite(id: number) {
+//     user.value.favourite.push(id)
+    
+// }
+
 
 const visible = ref(false);
 

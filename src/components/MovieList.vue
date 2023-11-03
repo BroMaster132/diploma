@@ -1,5 +1,6 @@
 <template>
-    <h2>All movies we have yet</h2>
+    <h1>All movies we have yet</h1>
+    <br><br>
     <div class="flex">
         <section  v-for="movie in movieList" :key="movie">
             <MovieCard class="card-style" :movie="movie" />  
@@ -25,10 +26,6 @@ onMounted(async () =>{
     await getAllMovies()
 })
 
-function watchMovie(id : any) {
-    console.log(id);
-    router.push({name: 'movie', params: {id}})
-}
 
 
 
@@ -38,11 +35,14 @@ function watchMovie(id : any) {
 
 
 <style scoped>
+h1 {
+    text-align: center;
+}
 .flex {
     display: flex;
     flex-flow: row wrap;
     justify-content: start;
-    border: saddlebrown solid;
+
     height: 1000px;
 }
 
